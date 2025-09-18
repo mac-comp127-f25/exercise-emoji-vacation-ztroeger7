@@ -22,7 +22,13 @@ public class EmojiVacation {
 
     private static final int
         SCENE_WIDTH = 800,
-        SCENE_HEIGHT = 600;
+        SCENE_HEIGHT = 600,
+        MOUNTAIN_MAX_HEIGHT = 170,
+        MOUNTAIN_MIN_HEIGHT = 100,
+        MOUNTAIN_MAX_LAYERS = 5,
+        MOUNTAIN_MIN_LAYERS = 1,
+        FOREST_MAX = 16,
+        FOREST_MIN = 1;
 
     private static Random random = new Random();
 
@@ -46,12 +52,17 @@ public class EmojiVacation {
         // TODO: [Instructions step 2] Create mountains 50% of the time.
         //       You should randomly determine the size and number of layers
         //       (within reasonable constraints).
-
+        if(percentChance(50)){
+            addMountains(canvas, 400, randomDouble(MOUNTAIN_MIN_HEIGHT, MOUNTAIN_MAX_HEIGHT), randomInt(MOUNTAIN_MIN_LAYERS, MOUNTAIN_MAX_LAYERS));
+        }
         addGround(canvas, 400);
 
         // TODO: [Instructions step 2] Create forests 60% of the time. You should randomly
         //       determine the count for the number of trees. Pick reasonable values for
         //       other parameters.
+        //if(percentChance(60)){
+        addForest(canvas, SCENE_HEIGHT, SCENE_WIDTH, randomInt(FOREST_MAX, FOREST_MIN));
+        //}
 
         List<GraphicsGroup> family = createFamily(2, 3);
         positionFamily(family, 60, 550, 20);
