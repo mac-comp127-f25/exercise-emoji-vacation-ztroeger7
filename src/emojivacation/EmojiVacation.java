@@ -27,8 +27,8 @@ public class EmojiVacation {
         MOUNTAIN_MIN_HEIGHT = 100,
         MOUNTAIN_MAX_LAYERS = 5,
         MOUNTAIN_MIN_LAYERS = 1,
-        FOREST_MAX = 16,
-        FOREST_MIN = 1;
+        FOREST_MAX = 14,
+        FOREST_MIN = 4;
 
     private static Random random = new Random();
 
@@ -61,7 +61,7 @@ public class EmojiVacation {
         //       determine the count for the number of trees. Pick reasonable values for
         //       other parameters.
         //if(percentChance(60)){
-        addForest(canvas, 500, 50, randomInt(FOREST_MAX, FOREST_MIN));
+        addForest(canvas, 1, 100, randomInt(FOREST_MAX, FOREST_MIN));
         //}
 
         List<GraphicsGroup> family = createFamily(2, 3);
