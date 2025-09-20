@@ -61,18 +61,21 @@ public class EmojiVacation {
         //       determine the count for the number of trees. Pick reasonable values for
         //       other parameters.
         //if(percentChance(60)){
-        addForest(canvas, 40, 40, randomInt(FOREST_MAX, FOREST_MIN));
+        //addForest(canvas, 40, 40, randomInt(FOREST_MAX, FOREST_MIN));
         //}
 
-        List<GraphicsGroup> family = createFamily(2, 3);
+        ArrayList<GraphicsGroup> family = createFamily(2, 3);
         positionFamily(family, 60, 550, 20);
         // TODO: [Instructions step 4] Add each emoji in the list to the canvas
+        for(GraphicsGroup emoji : family){
+            canvas.add(emoji);
+        }
         
     }
 
     // –––––– Emoji family –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
-    private static List<GraphicsGroup> createFamily(int adultCount, int childCount) {
+    private static ArrayList<GraphicsGroup> createFamily(int adultCount, int childCount) {
         double adultSize = 160, childSize = 90;
 
         // TODO: [Instructions step 6] Change this so that instead of always creating one adult
@@ -82,9 +85,16 @@ public class EmojiVacation {
         // Hint: You can't use List.of() to do this, because you don't know the size of the
         // resulting list before the code actually runs. What can you use?
         //
-        return List.of(
-            createRandomEmoji(adultSize),
-            createRandomEmoji(childSize));
+        ArrayList<GraphicsGroup> family = new ArrayList<>();
+        for(int i = 0; i < adultCount + childCount; i++){
+            if(i < adultCount){
+                family.add(createRandomEmoji(adultSize));
+            }
+            else{
+                family.add(createRandomEmoji(childSize));
+            }
+        }
+        return family;
     }
 
     private static GraphicsGroup createRandomEmoji(double size) {
@@ -95,11 +105,25 @@ public class EmojiVacation {
         // type A, else with some other probability return emoji type B, else with a certain
         // probability ... etc ... else return a smiley by default.
         //
-        return ProvidedEmojis.createSmileyFace(size);
+        if(percentChance(40)){
+            return Emojis.createWinkingFace(size);
+        }
+        else if(percentChance(25)){
+            return Emojis.createFrownyFace(size);
+        }
+        else if(percentChance(45)){
+            return ProvidedEmojis.createContentedFace(size);
+        }
+        else if(percentChance(10)){
+            return ProvidedEmojis.createNauseousFace(size);
+        }
+        else{
+            return Emojis.createSmileyFace(size);
+        }
     }
 
     private static void positionFamily(
-            List<GraphicsGroup> family,
+            ArrayList<GraphicsGroup> family,
             double leftX,
             double baselineY,
             double spacing
@@ -113,6 +137,17 @@ public class EmojiVacation {
         //
         // The bottom of each emoji should be baselineY. But setPosition() sets the _top_! How do you set the bottom to
         // a given position? (Hint: you can ask any graphics object for its height.)
+        double xPosition = 0;
+        for(GraphicsGroup emoji : family){
+            if(family.indexOf(emoji) == 0){
+                emoji.setPosition(leftX, baselineY - emoji.getHeight());
+                xPosition += leftX + emoji.getWidth();
+            }
+            else{
+                emoji.setPosition(xPosition + spacing, baselineY - emoji.getHeight());
+                xPosition += spacing + emoji.getWidth();
+            }
+        }
     }
 
     // –––––– Scenery ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
