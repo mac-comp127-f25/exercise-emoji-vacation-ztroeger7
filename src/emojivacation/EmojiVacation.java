@@ -61,7 +61,7 @@ public class EmojiVacation {
         //       determine the count for the number of trees. Pick reasonable values for
         //       other parameters.
         //if(percentChance(60)){
-        addForest(canvas, 1, 1, randomInt(FOREST_MAX, FOREST_MIN));
+        addForest(canvas, 40, 40, randomInt(FOREST_MAX, FOREST_MIN));
         //}
 
         List<GraphicsGroup> family = createFamily(2, 3);
