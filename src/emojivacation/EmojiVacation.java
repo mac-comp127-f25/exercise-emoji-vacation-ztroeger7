@@ -44,11 +44,11 @@ public class EmojiVacation {
 
     private static void generateVacationPhoto(CanvasWindow canvas) {
         canvas.setBackground(randomColorVariation(SKY_BLUE, 8));
-
+        
         addSun(canvas);
-
+        
         addCloudRows(canvas);
-
+        
         // TODO: [Instructions step 2] Create mountains 50% of the time.
         //       You should randomly determine the size and number of layers
         //       (within reasonable constraints).
@@ -56,17 +56,18 @@ public class EmojiVacation {
             addMountains(canvas, 400, randomDouble(MOUNTAIN_MIN_HEIGHT, MOUNTAIN_MAX_HEIGHT), randomInt(MOUNTAIN_MIN_LAYERS, MOUNTAIN_MAX_LAYERS));
         }
         addGround(canvas, 400);
-
+        
         // TODO: [Instructions step 2] Create forests 60% of the time. You should randomly
         //       determine the count for the number of trees. Pick reasonable values for
         //       other parameters.
         //if(percentChance(60)){
-        addForest(canvas, 1, 100, randomInt(FOREST_MAX, FOREST_MIN));
+        addForest(canvas, 1, 1, randomInt(FOREST_MAX, FOREST_MIN));
         //}
 
         List<GraphicsGroup> family = createFamily(2, 3);
         positionFamily(family, 60, 550, 20);
         // TODO: [Instructions step 4] Add each emoji in the list to the canvas
+        
     }
 
     // –––––– Emoji family –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
