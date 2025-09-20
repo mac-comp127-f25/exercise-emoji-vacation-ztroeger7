@@ -1,3 +1,8 @@
+/**
+ * Author: Zack Troeger
+ * Able to create smiley, winky, and frowny emoji objects
+ */
+
 package emojivacation;
 
 import edu.macalester.graphics.*;
