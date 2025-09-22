@@ -70,9 +70,9 @@ public class EmojiVacation {
         //       determine the count for the number of trees. Pick reasonable values for
         //       other parameters.
 
-        //if(percentChance(60)){
-        //addForest(canvas, 40, 40, randomInt(FOREST_MAX, FOREST_MIN));
-        //}
+        if(percentChance(60)){
+            addForest(canvas, 400, 40, randomInt(FOREST_MIN, FOREST_MAX));
+        }
 
         ArrayList<GraphicsGroup> family = createFamily(2, 3);
         positionFamily(family, 60, 550, 20);
